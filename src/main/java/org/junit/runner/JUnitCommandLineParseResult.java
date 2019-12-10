@@ -121,7 +121,8 @@ class JUnitCommandLineParseResult {
         }
     }
 
-    private Request applyFilterSpecs(Request request) {
+    private Request applyFilterSpecs(Request r) {
+        Request request = r;
         try {
             for (String filterSpec : filterSpecs) {
                 Filter filter = FilterFactories.createFilterFromFilterSpec(
