@@ -135,17 +135,17 @@ public abstract class TestCase extends Assert implements Test {
      *
      * @throws Throwable if any exception is thrown
      */
-    public void runBare() throws Throwable {
-        Throwable exception = null;
+    public void runBare() throws Exception {
+        Exception exception = null;
         setUp();
         try {
             runTest();
-        } catch (Throwable running) {
+        } catch (Exception running) {
             exception = running;
         } finally {
             try {
                 tearDown();
-            } catch (Throwable tearingDown) {
+            } catch (Exception tearingDown) {
                 if (exception == null) exception = tearingDown;
             }
         }
@@ -157,7 +157,7 @@ public abstract class TestCase extends Assert implements Test {
      *
      * @throws Throwable if any exception is thrown
      */
-    protected void runTest() throws Throwable {
+    protected void runTest() throws Exception {
         assertNotNull("TestCase.fName cannot be null", fName); // Some VMs crash when calling getMethod(null,null);
         Method runMethod = null;
         try {
@@ -177,7 +177,7 @@ public abstract class TestCase extends Assert implements Test {
             runMethod.invoke(this);
         } catch (InvocationTargetException e) {
             e.fillInStackTrace();
-            throw e.getTargetException();
+            throw e;
         } catch (IllegalAccessException e) {
             e.fillInStackTrace();
             throw e;
