@@ -150,7 +150,7 @@ public class TestCaseTest extends TestCase {
         final Exception running = new Exception("Running");
         TestCase t = new TestCase() {
             @Override
-            protected void runTest() throws Throwable {
+            protected void runTest() throws Exception {
                 throw running;
             }
 
